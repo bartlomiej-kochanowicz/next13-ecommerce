@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
-	"name": "next13-masters",
+	"name": "next13-ecommerce",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
