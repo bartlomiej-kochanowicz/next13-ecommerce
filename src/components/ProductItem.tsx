@@ -12,7 +12,7 @@ interface IProductType {
 }
 
 export const ProductItem: FC<IProductType> = ({ img: { alt, src }, name, description }) => (
-	<li className="rouned-lg w-min bg-neutral-200 p-4 transition hover:bg-neutral-300">
+	<li className="w-min rounded-lg bg-neutral-100 p-4 transition hover:bg-neutral-200">
 		<Image src={src} alt={alt} />
 
 		<h3 className="text-lg">{name}</h3>
