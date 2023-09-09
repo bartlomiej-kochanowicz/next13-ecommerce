@@ -15,7 +15,7 @@ export const ProductItem: FC<IProductType> = ({ img: { alt, src }, name, descrip
 	<li className="w-min rounded-lg bg-neutral-100 p-4 transition hover:bg-neutral-200">
 		<Image src={src} alt={alt} />
 
-		<h3 className="text-lg">{name}</h3>
+		<h3 className="mt-3 text-lg">{name}</h3>
 
 		<p className="text-sm">{description}</p>
 	</li>

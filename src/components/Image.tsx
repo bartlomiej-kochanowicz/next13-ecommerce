@@ -8,6 +8,6 @@ interface IImage {
 
 export const Image: FC<IImage> = (props) => (
 	<div className="relative h-80 w-80">
-		<NextImage {...props} layout="fill" />
+		<NextImage {...props} layout="fill" objectFit="contain" />
 	</div>
 );
