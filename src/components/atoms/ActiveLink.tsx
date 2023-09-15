@@ -15,17 +15,22 @@ interface IActiveLink {
 
 export const ActiveLink: FC<IActiveLink> = ({
 	children,
-	href,
+	href: hrefProp,
 	className,
 	activeClassName,
 	exact,
 }) => {
 	const pathname = usePathname();
 
-	const isActive = exact ? pathname === href : pathname.startsWith(href as string);
+	const href = hrefProp as string;
+
+	const isActive = exact
+		? pathname === href
+		: pathname.startsWith(href) &&
+		  (pathname[href.length] === "/" || pathname.length === href.length);
 
 	return (
-		<Link href={href} className={cslx(className, isActive && activeClassName)}>
+		<Link href={hrefProp} className={cslx(className, isActive && activeClassName)}>
 			{children}
 		</Link>
 	);

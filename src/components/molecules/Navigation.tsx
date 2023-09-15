@@ -2,9 +2,10 @@ import { ActiveLink } from "../atoms/ActiveLink";
 import { Image } from "@/components/atoms/Image";
 
 export const Navigation = () => {
-	const className = "text-neutral-500 font-semibold hover:text-neutral-700 text-xl";
+	const className = "text-neutral-500 font-semibold hover:text-neutral-700 text-xl pb-0.5";
 
-	const activeClassName = "text-purple-500 hover:text-purple-500";
+	const activeClassName =
+		"text-purple-500 hover:text-purple-500 border-purple-500 border-b-2 !pb-0";
 
 	return (
 		<div>
