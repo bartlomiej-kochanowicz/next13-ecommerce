@@ -1,6 +1,6 @@
 import products from "./products";
-import { ProductItem } from "@/components/ProductItem";
-import { ProductList } from "@/components/ProductList";
+import { ProductItem } from "@/components/atoms/ProductItem";
+import { ProductList } from "@/components/atoms/ProductList";
 
 const Products = () => (
 	<main className="my-4 flex justify-center">
