@@ -2,7 +2,7 @@ import products from "./products";
 import { ProductItem } from "@/components/atoms/ProductItem";
 import { ProductList } from "@/components/atoms/ProductList";
 
-const Products = () => (
+const ProductsPage = () => (
 	<main className="my-4 flex justify-center">
 		<ProductList>
 			{products.map(({ id, name, image_url, description, price_cents }) => (
@@ -21,4 +21,4 @@ const Products = () => (
 	</main>
 );
 
-export default Products;
+export default ProductsPage;
