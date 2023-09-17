@@ -47,10 +47,10 @@ export const Pagination: FC<IPagination> = ({ page, hrefBuilder }) => {
 						<ActiveLink
 							href={hrefBuilder(page) as ComponentProps<typeof Link>["href"]}
 							className={clsx(
-								"flex h-10 items-center justify-center border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700",
+								"flex h-10 items-center justify-center border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100",
 								!showLeftArrow && page === 1 && "rounded-l-lg",
 							)}
-							activeClassName="bg-gray-100 text-gray-700"
+							activeClassName="!bg-gray-100 text-gray-700"
 						>
 							{page}
 						</ActiveLink>
