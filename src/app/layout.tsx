@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 				<Navigation />
 
-				<main className="m-auto my-4 max-w-5xl">{children}</main>
+				<main className="mx-auto my-4 max-w-5xl">{children}</main>
 			</body>
 		</html>
 	);

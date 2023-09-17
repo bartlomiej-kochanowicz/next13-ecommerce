@@ -9,14 +9,16 @@ interface IProductPage {
 }
 
 const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
-	const { image, title } = await getProduct({ id });
+	const { image, title, description } = await getProduct({ id });
 
 	return (
-		<article className="flex">
-			<Image src={image} alt={title} className="h-96 w-96" />
+		<article className="justify-center align-middle sm:flex">
+			<Image src={image} alt={title} className="mx-auto h-80 w-80" />
 
-			<section>
-				<h1>{title}</h1>
+			<section className="sm:ml-3">
+				<h1 className="text-2xl font-semibold">{title}</h1>
+
+				<p>{description}</p>
 			</section>
 		</article>
 	);

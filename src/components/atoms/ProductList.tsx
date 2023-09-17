@@ -5,7 +5,10 @@ interface IProductList {
 }
 
 export const ProductList: FC<IProductList> = ({ children }) => (
-	<ul data-testid="products-list" className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+	<ul
+		data-testid="products-list"
+		className="mx-auto grid w-fit grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3"
+	>
 		{children}
 	</ul>
 );

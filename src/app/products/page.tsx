@@ -9,7 +9,7 @@ const ProductsPage = async () => {
 	return (
 		<ProductList>
 			{products.map(({ id, title, image, description, price }) => (
-				<Link key={id} href={`/product/${id}`}>
+				<Link key={id} href={`/product/${id}`} className="w-min">
 					<ProductItem
 						img={{
 							src: image,
