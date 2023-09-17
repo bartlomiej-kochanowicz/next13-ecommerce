@@ -15,7 +15,7 @@ export const Pagination: FC<IPagination> = ({ page, hrefBuilder }) => {
 	const showLeftArrow = page > 1;
 
 	return (
-		<nav aria-label="Page navigation example" className="m-4 mx-auto w-fit">
+		<nav aria-label="pagination" className="m-4 mx-auto w-fit">
 			<ul className="flex h-10 items-center -space-x-px text-base">
 				{showLeftArrow && (
 					<li>
