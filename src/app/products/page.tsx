@@ -1,24 +1,28 @@
-import products from "./products";
+import { getProducts } from "@/api/getProducts";
 import { ProductItem } from "@/components/atoms/ProductItem";
 import { ProductList } from "@/components/atoms/ProductList";
 
-const ProductsPage = () => (
-	<main className="my-4 flex justify-center">
-		<ProductList>
-			{products.map(({ id, name, image_url, description, price_cents }) => (
-				<ProductItem
-					key={id}
-					img={{
-						src: image_url,
-						alt: name,
-					}}
-					name={name}
-					description={description}
-					price={price_cents}
-				/>
-			))}
-		</ProductList>
-	</main>
-);
+const ProductsPage = async () => {
+	const products = await getProducts();
+
+	return (
+		<main className="my-4 flex justify-center">
+			<ProductList>
+				{products.map(({ id, title, image, description, price }) => (
+					<ProductItem
+						key={id}
+						img={{
+							src: image,
+							alt: title,
+						}}
+						title={title}
+						description={description}
+						price={price}
+					/>
+				))}
+			</ProductList>
+		</main>
+	);
+};
 
 export default ProductsPage;
