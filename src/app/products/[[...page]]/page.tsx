@@ -9,7 +9,11 @@ const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 
 	const products = await getProducts({ page });
 
-	const hrefBuilder = (page: number) => `/products/${page}`;
+	const hrefBuilder = (paginationPage: number) => {
+		if (page === 1 && paginationPage === 1) return "/products";
+
+		return `/products/${paginationPage}`;
+	};
 
 	return (
 		<Fragment>
