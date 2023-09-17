@@ -1,4 +1,6 @@
 import { type FC } from "react";
+import { getProduct } from "@/api/getProduct";
+import { Image } from "@/components/atoms/Image";
 
 interface IProductPage {
 	params: {
@@ -6,8 +8,18 @@ interface IProductPage {
 	};
 }
 
-const ProductPage: FC<IProductPage> = ({ params: { id } }) => {
-	return <div>Product Page - {id}</div>;
+const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
+	const { image, title } = await getProduct({ id });
+
+	return (
+		<article className="flex">
+			<Image src={image} alt={title} className="h-96 w-96" />
+
+			<section>
+				<h1>{title}</h1>
+			</section>
+		</article>
+	);
 };
 
 export default ProductPage;

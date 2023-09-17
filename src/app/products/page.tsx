@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getProducts } from "@/api/getProducts";
 import { ProductItem } from "@/components/atoms/ProductItem";
 import { ProductList } from "@/components/atoms/ProductList";
@@ -6,11 +7,10 @@ const ProductsPage = async () => {
 	const products = await getProducts();
 
 	return (
-		<main className="my-4 flex justify-center">
-			<ProductList>
-				{products.map(({ id, title, image, description, price }) => (
+		<ProductList>
+			{products.map(({ id, title, image, description, price }) => (
+				<Link key={id} href={`/product/${id}`}>
 					<ProductItem
-						key={id}
 						img={{
 							src: image,
 							alt: title,
@@ -19,9 +19,9 @@ const ProductsPage = async () => {
 						description={description}
 						price={price}
 					/>
-				))}
-			</ProductList>
-		</main>
+				</Link>
+			))}
+		</ProductList>
 	);
 };
 
