@@ -11,6 +11,7 @@ interface IActiveLink {
 	className?: string;
 	activeClassName?: string;
 	exact?: boolean;
+	disabled?: boolean;
 }
 
 export const ActiveLink: FC<IActiveLink> = ({
