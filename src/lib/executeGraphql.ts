@@ -1,5 +1,9 @@
 import { type TypedDocumentString } from "@/gql/graphql";
 
+type GraphQLResponse<T> =
+	| { data?: undefined; errors: { message: string }[] }
+	| { data: T; errors?: undefined };
+
 export const executeGraphql = async <TResult, TVariables>(
 	query: TypedDocumentString<TResult, TVariables>,
 	variables: TVariables,
