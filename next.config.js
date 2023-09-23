@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	experimental: {
-		// typedRoutes: true,
+		typedRoutes: true,
 	},
 	images: {
 		remotePatterns: [
@@ -12,6 +12,15 @@ const nextConfig = {
 				pathname: "/images/**",
 			},
 		],
+	},
+	async redirects() {
+		return [
+			{
+				source: "/products",
+				destination: "/products/1",
+				permanent: true,
+			},
+		];
 	},
 };
 

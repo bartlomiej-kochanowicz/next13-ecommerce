@@ -19,12 +19,6 @@ const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 
 	const products = await getProducts({ page });
 
-	const hrefBuilder = (paginationPage: number) => {
-		if (page === 1 && paginationPage === 1) return "/products";
-
-		return `/products/${paginationPage}`;
-	};
-
 	return (
 		<Fragment>
 			<ProductList>
@@ -43,7 +37,7 @@ const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 				))}
 			</ProductList>
 
-			<Pagination page={page} hrefBuilder={hrefBuilder} />
+			<Pagination page={page} path="/products/[page]" />
 		</Fragment>
 	);
 };

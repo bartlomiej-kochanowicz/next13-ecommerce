@@ -1,16 +1,21 @@
-import { type ComponentProps, type FC } from "react";
-import type Link from "next/link";
+"use client";
+
+import { type FC } from "react";
 import clsx from "clsx";
+import { useParams } from "next/navigation";
 import { ActiveLink } from "../atoms/ActiveLink";
 import { generateOrderedArray } from "@/utils/generateOrderedArray";
+import { generatePath } from "@/utils/generatePath";
 
 interface IPagination {
 	page: number;
-	hrefBuilder: (page: number) => string;
+	path: string;
 }
 
-export const Pagination: FC<IPagination> = ({ page, hrefBuilder }) => {
+export const Pagination: FC<IPagination> = ({ page, path }) => {
 	const pages = generateOrderedArray(page);
+
+	const params = useParams();
 
 	const showLeftArrow = page > 1;
 
@@ -20,7 +25,10 @@ export const Pagination: FC<IPagination> = ({ page, hrefBuilder }) => {
 				{showLeftArrow && (
 					<li>
 						<ActiveLink
-							href={hrefBuilder(page - 1) as ComponentProps<typeof Link>["href"]}
+							href={generatePath(path, {
+								...params,
+								page: String(page - 1),
+							})}
 							className="ml-0 flex h-10 items-center justify-center rounded-l-lg border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700"
 						>
 							<span className="sr-only">Previous</span>
@@ -45,7 +53,10 @@ export const Pagination: FC<IPagination> = ({ page, hrefBuilder }) => {
 				{pages.map((page) => (
 					<li key={page}>
 						<ActiveLink
-							href={hrefBuilder(page) as ComponentProps<typeof Link>["href"]}
+							href={generatePath(path, {
+								...params,
+								page: String(page),
+							})}
 							className={clsx(
 								"flex h-10 items-center justify-center border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100",
 								!showLeftArrow && page === 1 && "rounded-l-lg",
@@ -58,7 +69,10 @@ export const Pagination: FC<IPagination> = ({ page, hrefBuilder }) => {
 				))}
 				<li>
 					<ActiveLink
-						href={hrefBuilder(page + 1) as ComponentProps<typeof Link>["href"]}
+						href={generatePath(path, {
+							...params,
+							page: String(page + 1),
+						})}
 						className="flex h-10 items-center justify-center rounded-r-lg border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 "
 					>
 						<span className="sr-only">Next</span>

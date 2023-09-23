@@ -1,37 +1,37 @@
 "use client";
 
+import { type UrlObject } from "url";
 import cslx from "clsx";
+import type { Route } from "next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ComponentProps, type FC, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
-interface IActiveLink {
+interface IActiveLink<T extends string> {
 	children: ReactNode;
-	href: ComponentProps<typeof Link>["href"];
+	href: Route<T> | UrlObject;
 	className?: string;
 	activeClassName?: string;
 	exact?: boolean;
 	disabled?: boolean;
 }
 
-export const ActiveLink: FC<IActiveLink> = ({
+export const ActiveLink = <T extends string>({
 	children,
-	href: hrefProp,
+	href,
 	className,
 	activeClassName,
 	exact,
-}) => {
+}: IActiveLink<T>) => {
 	const pathname = usePathname();
-
-	const href = hrefProp as string;
 
 	const isActive = exact
 		? pathname === href
-		: pathname.startsWith(href) &&
-		  (pathname[href.length] === "/" || pathname.length === href.length);
+		: pathname.startsWith(href as string) &&
+		  (pathname[(href as string).length] === "/" || pathname.length === (href as string).length);
 
 	return (
-		<Link href={hrefProp} className={cslx(className, isActive && activeClassName)}>
+		<Link href={href} className={cslx(className, isActive && activeClassName)}>
 			{children}
 		</Link>
 	);
