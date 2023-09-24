@@ -7,7 +7,7 @@ export const getProductSingle = async ({ id }: { id: string }) => {
 			id,
 		});
 
-		return data.product;
+		return data;
 	} catch {
 		throw new Error("Error while fetching single product");
 	}

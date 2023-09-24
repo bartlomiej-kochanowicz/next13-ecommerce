@@ -6,7 +6,7 @@ import { type ProductInListFragment } from "@/gql/graphql";
 
 interface IProductPresenter {
 	data: ProductInListFragment[];
-	pagination: ComponentProps<typeof Pagination>;
+	pagination?: ComponentProps<typeof Pagination>;
 }
 
 export const ProductPresenter: FC<IProductPresenter> = ({ data, pagination }) => (
@@ -27,6 +27,6 @@ export const ProductPresenter: FC<IProductPresenter> = ({ data, pagination }) =>
 			))}
 		</ProductList>
 
-		<Pagination {...pagination} />
+		{pagination && <Pagination {...pagination} />}
 	</Fragment>
 );
