@@ -1,4 +1,5 @@
 /* eslint-disable */
+import type { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -10714,6 +10715,14 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type ProductsQueryVariables = Exact<{
+  first?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ProductsQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -10728,3 +10737,22 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+
+export const ProductsDocument = new TypedDocumentString(`
+    query Products($first: Int, $skip: Int) {
+  products(first: $first, skip: $skip) {
+    id
+    name
+    description
+    price
+    images {
+      url
+    }
+  }
+  productsConnection {
+    aggregate {
+      count
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsQuery, ProductsQueryVariables>;

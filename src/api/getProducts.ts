@@ -1,17 +1,17 @@
-import type { Product } from "@/types/product";
+import { ProductsDocument } from "@/gql/graphql";
+import { executeGraphql } from "@/lib/executeGraphql";
 
-export const getProducts = async ({ page = 1, take = 10 } = {}): Promise<Product[]> => {
-	const offset = (page - 1) * take;
-
+export const getProducts = async ({ page = 1, take = 10 } = {}) => {
 	try {
-		const response = await fetch(
-			`https://naszsklep-api.vercel.app/api/products?take=${take}&offset=${offset}`,
-		);
+		const skip = (page - 1) * take;
 
-		const products = (await response.json()) as Product[];
+		const data = await executeGraphql(ProductsDocument, {
+			skip,
+			first: take,
+		});
 
-		return products;
+		return data;
 	} catch {
-		throw new Error("Cannot fetch products");
+		console.log("error");
 	}
 };
