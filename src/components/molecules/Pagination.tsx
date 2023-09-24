@@ -27,6 +27,10 @@ export const Pagination: FC<IPagination> = ({ page, path, count, take }) => {
 	const showLeftArrow = page > 1;
 	const showRightArrow = page < pages.length;
 
+	if (pages.length === 1) {
+		return null;
+	}
+
 	return (
 		<nav aria-label="pagination" className="m-4 mx-auto w-fit">
 			<ul className="flex h-10 items-center -space-x-px text-base">

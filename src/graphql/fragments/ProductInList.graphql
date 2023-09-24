@@ -1,0 +1,9 @@
+fragment ProductInList on Product {
+	id
+	name
+	description
+	price
+	images {
+		url
+	}
+}

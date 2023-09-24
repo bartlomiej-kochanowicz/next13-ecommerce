@@ -7,7 +7,7 @@ import { Pagination } from "@/components/molecules/Pagination";
 import { paths } from "@/paths";
 
 export const generateStaticParams = () => {
-	const pages = Array.from({ length: 10 }, (_, i) => i + 1);
+	const pages = Array.from({ length: 3 }, (_, i) => i + 1);
 
 	return pages.map((page) => ({
 		params: {

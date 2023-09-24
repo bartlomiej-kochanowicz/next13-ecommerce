@@ -1,6 +1,6 @@
-query ProductsGetListInCategoryGetList($slug: String!) {
-	products(where: { categories_every: { slug: $slug } }) {
-		id
+query ProductsGetListInCategory($slug: String, $first: Int, $skip: Int) {
+	products(where: { categories_every: { slug: $slug } }, first: $first, skip: $skip) {
+		...ProductInList
 	}
 
 	productsConnection(where: { categories_every: { slug: $slug } }) {

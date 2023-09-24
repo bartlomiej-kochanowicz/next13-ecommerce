@@ -1,13 +1,8 @@
 query ProductsGetListAll($first: Int, $skip: Int) {
 	products(first: $first, skip: $skip) {
-		id
-		name
-		description
-		price
-		images {
-			url
-		}
+		...ProductInList
 	}
+
 	productsConnection {
 		aggregate {
 			count
