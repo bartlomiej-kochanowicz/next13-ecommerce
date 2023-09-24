@@ -43,7 +43,7 @@ const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
 
 	return (
 		<article className="mx-3 justify-center align-middle sm:flex">
-			{image && <Image src={image} alt={name} className="mx-auto h-80 w-80" />}
+			{image && <Image src={image} alt={name} className="mx-auto h-96 w-96 " />}
 
 			<section className="my-4 sm:mx-8">
 				<div className="mb-4 flex justify-between align-middle">

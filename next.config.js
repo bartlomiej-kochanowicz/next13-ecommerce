@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	experimental: {
-		typedRoutes: true,
+		// typedRoutes: true,
 	},
 	images: {
 		remotePatterns: [
@@ -17,6 +17,11 @@ const nextConfig = {
 			{
 				source: "/products",
 				destination: "/products/1",
+				permanent: true,
+			},
+			{
+				source: "/categories",
+				destination: "/categories/t-shirts/1",
 				permanent: true,
 			},
 			{
@@ -37,6 +42,21 @@ const nextConfig = {
 			{
 				source: "/categories/socks",
 				destination: "/categories/socks/1",
+				permanent: true,
+			},
+			{
+				source: "/collections/summer-vibes",
+				destination: "/categories/summer-vibes/1",
+				permanent: true,
+			},
+			{
+				source: "/collections/new-arrivals",
+				destination: "/categories/new-arrivals/1",
+				permanent: true,
+			},
+			{
+				source: "/collections/elegant-extras",
+				destination: "/categories/elegant-extras/1",
 				permanent: true,
 			},
 		];

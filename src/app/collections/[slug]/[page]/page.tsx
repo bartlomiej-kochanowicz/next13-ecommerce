@@ -25,7 +25,7 @@ export const generateStaticParams = async ({ params: { slug } }: Params) => {
 	}));
 };
 
-const CategoriesPage = async ({ params }: Params) => {
+const CollectionsPage = async ({ params }: Params) => {
 	const page = Number(params?.page?.[0]) || 1;
 
 	const { slug } = params;
@@ -49,10 +49,10 @@ const CategoriesPage = async ({ params }: Params) => {
 				count,
 				take,
 				page,
-				path: paths.categories,
+				path: paths.collections,
 			}}
 		/>
 	);
 };
 
-export default CategoriesPage;
+export default CollectionsPage;

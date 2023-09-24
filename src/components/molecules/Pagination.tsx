@@ -3,6 +3,7 @@
 import { type FC } from "react";
 import clsx from "clsx";
 import { useParams } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ActiveLink } from "../atoms/ActiveLink";
 import { generateOrderedArray } from "@/utils/generateOrderedArray";
 import { generatePath } from "@/utils/generatePath";
@@ -41,24 +42,11 @@ export const Pagination: FC<IPagination> = ({ page, path, count, take }) => {
 								...params,
 								page: String(page - 1),
 							})}
-							className="ml-0 flex h-10 items-center justify-center rounded-l-lg border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+							className="ml-0 flex h-10 items-center justify-center rounded-l-lg border border-gray-300 bg-white px-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700"
 						>
 							<span className="sr-only">Previous</span>
-							<svg
-								className="h-3 w-3"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 6 10"
-							>
-								<path
-									stroke="currentColor"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M5 1 1 5l4 4"
-								/>
-							</svg>
+
+							<ChevronLeft />
 						</ActiveLink>
 					</li>
 				)}
@@ -87,24 +75,11 @@ export const Pagination: FC<IPagination> = ({ page, path, count, take }) => {
 								...params,
 								page: String(page + 1),
 							})}
-							className="flex h-10 items-center justify-center rounded-r-lg border border-gray-300 bg-white px-4 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+							className="flex h-10 items-center justify-center rounded-r-lg border border-gray-300 bg-white px-2 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700"
 						>
 							<span className="sr-only">Next</span>
-							<svg
-								className="h-3 w-3"
-								aria-hidden="true"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 6 10"
-							>
-								<path
-									stroke="currentColor"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="m1 9 4-4-4-4"
-								/>
-							</svg>
+
+							<ChevronRight />
 						</ActiveLink>
 					</li>
 				)}
