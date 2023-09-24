@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { ProductGetSingleDocument } from "@/gql/graphql";
 import { executeGraphql } from "@/lib/executeGraphql";
 
@@ -10,6 +9,6 @@ export const getProduct = async ({ id }: { id: string }) => {
 
 		return data.product;
 	} catch {
-		return notFound();
+		throw new Error("Error while fetching single product");
 	}
 };

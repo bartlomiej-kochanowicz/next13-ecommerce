@@ -1,7 +1,12 @@
 import { ActiveLink } from "../atoms/ActiveLink";
+import { getCategories } from "@/api/getCategories";
 import { Image } from "@/components/atoms/Image";
+import { paths } from "@/paths";
+import { generatePath } from "@/utils/generatePath";
 
-export const Navigation = () => {
+export const Navigation = async () => {
+	const categories = await getCategories();
+
 	const className = "text-neutral-500 font-semibold hover:text-neutral-700 text-xl pb-0.5";
 
 	const activeClassName =
@@ -19,6 +24,19 @@ export const Navigation = () => {
 				<ActiveLink href="/products" className={className} activeClassName={activeClassName}>
 					All
 				</ActiveLink>
+
+				{categories.map(({ name, slug }) => (
+					<ActiveLink
+						key={slug}
+						href={generatePath(paths.categories, {
+							category: slug,
+						})}
+						className={className}
+						activeClassName={activeClassName}
+					>
+						{name}
+					</ActiveLink>
+				))}
 			</nav>
 		</div>
 	);

@@ -10715,6 +10715,11 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type CategoriesGetListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CategoriesGetListQuery = { categories: Array<{ slug: string, name: string }> };
+
 export type ProductGetSingleQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -10745,6 +10750,14 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const CategoriesGetListDocument = new TypedDocumentString(`
+    query CategoriesGetList {
+  categories {
+    slug
+    name
+  }
+}
+    `) as unknown as TypedDocumentString<CategoriesGetListQuery, CategoriesGetListQueryVariables>;
 export const ProductGetSingleDocument = new TypedDocumentString(`
     query ProductGetSingle($id: ID!) {
   product(where: {id: $id}) {

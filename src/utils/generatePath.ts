@@ -11,7 +11,11 @@ export const generatePath = <T extends string>(
 		result = result.replace(new RegExp(`\\[${param}\\]`, "g"), value);
 	}
 
-	const missingParams = (template.match(/\[(\w+)\]/g) || []).map((match) => match.slice(1, -1));
+	result = result.replace(/\/\[.*?\]\?/g, "");
+
+	console.log("#####", result);
+
+	const missingParams = (result.match(/\[(\w+)\]/g) || []).map((match) => match.slice(1, -1));
 	const missingParam = missingParams.find((param) => !params[param]);
 
 	if (missingParam) {

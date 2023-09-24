@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { ProductsGetListDocument } from "@/gql/graphql";
 import { executeGraphql } from "@/lib/executeGraphql";
 
@@ -13,6 +12,6 @@ export const getProducts = async ({ page = 1, take = 10 } = {}) => {
 
 		return data;
 	} catch {
-		return notFound();
+		throw new Error("Error while fetching products list");
 	}
 };

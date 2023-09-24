@@ -4,6 +4,7 @@ import { getProducts } from "@/api/getProducts";
 import { ProductItem } from "@/components/atoms/ProductItem";
 import { ProductList } from "@/components/atoms/ProductList";
 import { Pagination } from "@/components/molecules/Pagination";
+import { paths } from "@/paths";
 
 export const generateStaticParams = () => {
 	const pages = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -45,7 +46,7 @@ const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 				))}
 			</ProductList>
 
-			<Pagination page={page} take={take} count={count} path="/products/[page]" />
+			<Pagination page={page} take={take} count={count} path={paths.products} />
 		</Fragment>
 	);
 };
