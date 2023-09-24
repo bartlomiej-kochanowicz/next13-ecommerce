@@ -45,18 +45,23 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/collections",
+				destination: "/collections/summer-vibes/1",
+				permanent: true,
+			},
+			{
 				source: "/collections/summer-vibes",
-				destination: "/categories/summer-vibes/1",
+				destination: "/collections/summer-vibes/1",
 				permanent: true,
 			},
 			{
 				source: "/collections/new-arrivals",
-				destination: "/categories/new-arrivals/1",
+				destination: "/collections/new-arrivals/1",
 				permanent: true,
 			},
 			{
 				source: "/collections/elegant-extras",
-				destination: "/categories/elegant-extras/1",
+				destination: "/collections/elegant-extras/1",
 				permanent: true,
 			},
 		];

@@ -3,6 +3,7 @@ import { paths } from "@/paths";
 import { getProductsListInCategory } from "@/api/getProductsListInCategory";
 import { generateStaticPagination } from "@/utils/generateStaticPagination";
 import { ProductPresenter } from "@/components/organisms/ProductsPresenter";
+import { getProductsListInCollection } from "@/api/getProductsListInCollection";
 
 type Params = { params: { slug?: string; page?: string } };
 
@@ -34,7 +35,7 @@ const CollectionsPage = async ({ params }: Params) => {
 		notFound();
 	}
 
-	const data = await getProductsListInCategory({ page, take, slug });
+	const data = await getProductsListInCollection({ page, take, slug });
 
 	if (!data) {
 		notFound();
