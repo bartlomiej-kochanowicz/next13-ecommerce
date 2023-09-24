@@ -5,9 +5,14 @@ import { ProductItem } from "@/components/atoms/ProductItem";
 import { ProductList } from "@/components/atoms/ProductList";
 import { Pagination } from "@/components/molecules/Pagination";
 import { paths } from "@/paths";
+import { generateStaticPagination } from "@/utils/generateStaticPagination";
 
-export const generateStaticParams = () => {
-	const pages = Array.from({ length: 3 }, (_, i) => i + 1);
+const take = 10;
+
+export const generateStaticParams = async () => {
+	const data = await getProductsListAll();
+
+	const pages = generateStaticPagination(data.productsConnection.aggregate.count, take);
 
 	return pages.map((page) => ({
 		params: {
@@ -18,7 +23,6 @@ export const generateStaticParams = () => {
 
 const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 	const page = Number(params?.page?.[0]) || 1;
-	const take = 10;
 
 	const data = await getProductsListAll({ page, take });
 

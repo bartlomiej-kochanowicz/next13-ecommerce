@@ -5,20 +5,27 @@ import { ProductList } from "@/components/atoms/ProductList";
 import { Pagination } from "@/components/molecules/Pagination";
 import { paths } from "@/paths";
 import { getProductsListInCategory } from "@/api/getProductsListInCategory";
+import { generateStaticPagination } from "@/utils/generateStaticPagination";
 
-export const generateStaticParams = () => {
-	const pages = Array.from({ length: 3 }, (_, i) => i + 1);
+type Params = { params: { slug: string; page?: string } };
+
+const take = 10;
+
+export const generateStaticParams = async ({ params: { slug } }: Params) => {
+	const data = await getProductsListInCategory({ slug });
+
+	const pages = generateStaticPagination(data.productsConnection.aggregate.count, take);
 
 	return pages.map((page) => ({
 		params: {
 			page: [String(page)],
+			slug,
 		},
 	}));
 };
 
-const CategoriesPage = async ({ params }: { params: { slug: string; page?: string } }) => {
+const CategoriesPage = async ({ params }: Params) => {
 	const page = Number(params?.page?.[0]) || 1;
-	const take = 10;
 
 	const data = await getProductsListInCategory({ page, take, slug: params.slug });
 

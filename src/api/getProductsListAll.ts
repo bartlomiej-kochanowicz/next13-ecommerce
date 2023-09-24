@@ -7,7 +7,7 @@ export const getProductsListAll = async ({
 }: {
 	page?: number;
 	take?: number;
-}) => {
+} = {}) => {
 	try {
 		const skip = (page - 1) * take;
 
