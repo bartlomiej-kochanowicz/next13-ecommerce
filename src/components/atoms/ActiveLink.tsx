@@ -31,7 +31,11 @@ export const ActiveLink = <T extends string>({
 		  (pathname[(href as string).length] === "/" || pathname.length === (href as string).length);
 
 	return (
-		<Link href={href} className={cslx(className, isActive && activeClassName)}>
+		<Link
+			href={href}
+			className={cslx(className, isActive && activeClassName)}
+			{...(isActive && { "aria-current": true })}
+		>
 			{children}
 		</Link>
 	);

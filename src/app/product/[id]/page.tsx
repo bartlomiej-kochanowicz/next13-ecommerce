@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProduct } from "@/api/getProduct";
+import { getProductSingle } from "@/api/getProductSingle";
 import { Image } from "@/components/atoms/Image";
 
 interface IProductPage {
@@ -13,7 +13,7 @@ interface IProductPage {
 export async function generateMetadata({ params }: IProductPage): Promise<Metadata> {
 	const { id } = params;
 
-	const data = await getProduct({ id });
+	const data = await getProductSingle({ id });
 
 	if (!data) {
 		return notFound();
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: IProductPage): Promise<Metada
 }
 
 const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
-	const data = await getProduct({ id });
+	const data = await getProductSingle({ id });
 
 	if (!data) {
 		notFound();

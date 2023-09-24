@@ -10727,13 +10727,20 @@ export type ProductGetSingleQueryVariables = Exact<{
 
 export type ProductGetSingleQuery = { product?: { id: string, name: string, description: string, price: number, images: Array<{ url: string }> } | null };
 
-export type ProductsGetListQueryVariables = Exact<{
+export type ProductsGetListAllQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
+export type ProductsGetListAllQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
+
+export type ProductsGetListInCategoryGetListQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ProductsGetListInCategoryGetListQuery = { products: Array<{ id: string }>, productsConnection: { aggregate: { count: number } } };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -10771,8 +10778,8 @@ export const ProductGetSingleDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProductGetSingleQuery, ProductGetSingleQueryVariables>;
-export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList($first: Int, $skip: Int) {
+export const ProductsGetListAllDocument = new TypedDocumentString(`
+    query ProductsGetListAll($first: Int, $skip: Int) {
   products(first: $first, skip: $skip) {
     id
     name
@@ -10788,4 +10795,16 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+    `) as unknown as TypedDocumentString<ProductsGetListAllQuery, ProductsGetListAllQueryVariables>;
+export const ProductsGetListInCategoryGetListDocument = new TypedDocumentString(`
+    query ProductsGetListInCategoryGetList($slug: String!) {
+  products(where: {categories_every: {slug: $slug}}) {
+    id
+  }
+  productsConnection(where: {categories_every: {slug: $slug}}) {
+    aggregate {
+      count
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetListInCategoryGetListQuery, ProductsGetListInCategoryGetListQueryVariables>;

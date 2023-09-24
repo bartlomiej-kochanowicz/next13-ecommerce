@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { notFound } from "next/navigation";
-import { getProducts } from "@/api/getProducts";
+import { getProductsListAll } from "@/api/getProductsListAll";
 import { ProductItem } from "@/components/atoms/ProductItem";
 import { ProductList } from "@/components/atoms/ProductList";
 import { Pagination } from "@/components/molecules/Pagination";
@@ -20,7 +20,7 @@ const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 	const page = Number(params?.page?.[0]) || 1;
 	const take = 10;
 
-	const data = await getProducts({ page, take });
+	const data = await getProductsListAll({ page, take });
 
 	if (!data) {
 		notFound();

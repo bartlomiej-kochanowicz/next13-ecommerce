@@ -1,0 +1,11 @@
+query ProductsGetListInCategoryGetList($slug: String!) {
+	products(where: { categories_every: { slug: $slug } }) {
+		id
+	}
+
+	productsConnection(where: { categories_every: { slug: $slug } }) {
+		aggregate {
+			count
+		}
+	}
+}

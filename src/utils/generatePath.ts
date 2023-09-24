@@ -3,17 +3,15 @@ import type { Route } from "next";
 
 export const generatePath = <T extends string>(
 	template: string,
-	params: Record<string, string>,
+	params: Record<string, string> = {},
 ): Route<T> | UrlObject => {
 	let result = template;
 
 	for (const [param, value] of Object.entries(params)) {
-		result = result.replace(new RegExp(`\\[${param}\\]`, "g"), value);
+		result = result.replace(new RegExp(`\\[${param}\\]\\?{0,1}`, "g"), value);
 	}
 
 	result = result.replace(/\/\[.*?\]\?/g, "");
-
-	console.log("#####", result);
 
 	const missingParams = (result.match(/\[(\w+)\]/g) || []).map((match) => match.slice(1, -1));
 	const missingParam = missingParams.find((param) => !params[param]);

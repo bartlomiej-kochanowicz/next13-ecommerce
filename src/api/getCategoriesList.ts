@@ -1,7 +1,7 @@
 import { CategoriesGetListDocument } from "@/gql/graphql";
 import { executeGraphql } from "@/lib/executeGraphql";
 
-export const getCategories = async () => {
+export const getCategoriesList = async () => {
 	try {
 		const data = await executeGraphql(CategoriesGetListDocument);
 
