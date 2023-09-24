@@ -1,13 +1,15 @@
-import type { Product } from "@/types/product";
+import { notFound } from "next/navigation";
+import { ProductGetSingleDocument } from "@/gql/graphql";
+import { executeGraphql } from "@/lib/executeGraphql";
 
-export const getProduct = async ({ id }: { id: string }): Promise<Product> => {
+export const getProduct = async ({ id }: { id: string }) => {
 	try {
-		const response = await fetch(`https://naszsklep-api.vercel.app/api/products/${id}`);
+		const data = await executeGraphql(ProductGetSingleDocument, {
+			id,
+		});
 
-		const products = (await response.json()) as Product;
-
-		return products;
+		return data.product;
 	} catch {
-		throw new Error("Cannot fetch product");
+		return notFound();
 	}
 };

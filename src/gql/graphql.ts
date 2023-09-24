@@ -10715,13 +10715,20 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
-export type ProductsQueryVariables = Exact<{
+export type ProductGetSingleQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ProductGetSingleQuery = { product?: { id: string, name: string, description: string, price: number, images: Array<{ url: string }> } | null };
+
+export type ProductsGetListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ProductsQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
+export type ProductsGetListQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -10738,8 +10745,21 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
-export const ProductsDocument = new TypedDocumentString(`
-    query Products($first: Int, $skip: Int) {
+export const ProductGetSingleDocument = new TypedDocumentString(`
+    query ProductGetSingle($id: ID!) {
+  product(where: {id: $id}) {
+    id
+    name
+    description
+    price
+    images {
+      url
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductGetSingleQuery, ProductGetSingleQueryVariables>;
+export const ProductsGetListDocument = new TypedDocumentString(`
+    query ProductsGetList($first: Int, $skip: Int) {
   products(first: $first, skip: $skip) {
     id
     name
@@ -10755,4 +10775,4 @@ export const ProductsDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<ProductsQuery, ProductsQueryVariables>;
+    `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;

@@ -1,4 +1,4 @@
-query Products($first: Int, $skip: Int) {
+query ProductsGetList($first: Int, $skip: Int) {
 	products(first: $first, skip: $skip) {
 		id
 		name

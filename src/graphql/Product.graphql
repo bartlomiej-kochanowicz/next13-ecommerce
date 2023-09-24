@@ -1,0 +1,11 @@
+query ProductGetSingle($id: ID!) {
+	product(where: { id: $id }) {
+		id
+		name
+		description
+		price
+		images {
+			url
+		}
+	}
+}

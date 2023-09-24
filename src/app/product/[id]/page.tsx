@@ -1,5 +1,6 @@
 import { type FC } from "react";
 import { type Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getProduct } from "@/api/getProduct";
 import { Image } from "@/components/atoms/Image";
 
@@ -12,27 +13,41 @@ interface IProductPage {
 export async function generateMetadata({ params }: IProductPage): Promise<Metadata> {
 	const { id } = params;
 
-	const { title, description, image } = await getProduct({ id });
+	const data = await getProduct({ id });
+
+	if (!data) {
+		return notFound();
+	}
+
+	const { name, description, images } = data;
 
 	return {
-		title: title,
+		title: name,
 		description: description,
 		openGraph: {
-			images: [image],
+			images: images[0].url ? [images[0].url] : [],
 		},
 	};
 }
 
 const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
-	const { image, title, description, price } = await getProduct({ id });
+	const data = await getProduct({ id });
+
+	if (!data) {
+		notFound();
+	}
+
+	const { images, name, description, price } = data;
+
+	const image = images[0].url;
 
 	return (
 		<article className="mx-3 justify-center align-middle sm:flex">
-			<Image src={image} alt={title} className="mx-auto h-80 w-80" />
+			{image && <Image src={image} alt={name} className="mx-auto h-80 w-80" />}
 
 			<section className="my-4 sm:mx-8">
 				<div className="mb-4 flex justify-between align-middle">
-					<h1 className="text-2xl font-semibold">{title}</h1>
+					<h1 className="text-2xl font-semibold">{name}</h1>
 
 					<data value={price} className="h-fit text-2xl font-medium">
 						{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
