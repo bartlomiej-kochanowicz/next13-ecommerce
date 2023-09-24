@@ -1,8 +1,8 @@
 import { type FC } from "react";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+import NextImage from "next/image";
 import { getProductSingle } from "@/api/getProductSingle";
-import { Image } from "@/components/atoms/Image";
 
 interface IProductPage {
 	params: {
@@ -42,12 +42,12 @@ const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
 	const image = images[0].url;
 
 	return (
-		<article className="mx-3 justify-center align-middle sm:flex">
-			{image && <Image src={image} alt={name} className="mx-auto h-96 w-96 " />}
+		<article className="mx-3 justify-center align-middle md:flex">
+			{image && <NextImage src={image} alt={name} width={400} height={400} className="mx-auto" />}
 
-			<section className="my-4 sm:mx-8">
+			<section className="my-4 md:mx-8">
 				<div className="mb-4 flex justify-between align-middle">
-					<h1 className="text-2xl font-semibold">{name}</h1>
+					<h1 className="mr-16 text-2xl font-semibold">{name}</h1>
 
 					<data value={price} className="h-fit text-2xl font-medium">
 						{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(

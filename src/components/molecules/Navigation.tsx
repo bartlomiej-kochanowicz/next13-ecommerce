@@ -1,6 +1,6 @@
+import NextImage from "next/image";
 import { ActiveLink } from "../atoms/ActiveLink";
 import { SubNavigation } from "./SubNavigation";
-import { Image } from "@/components/atoms/Image";
 import { getCategoriesList } from "@/api/getCategoriesList";
 import { generatePath } from "@/utils/generatePath";
 import { paths } from "@/paths";
@@ -17,7 +17,13 @@ export const Navigation = async () => {
 
 	return (
 		<nav className="fixed left-0 right-0 top-0 z-10 m-auto flex items-center gap-3 border-b bg-white px-4 py-2">
-			<Image src="/svgs/logo.svg" className="mr-4 h-8 w-8" alt="Company logo" />
+			<NextImage
+				src="/svgs/logo.svg"
+				width={20}
+				height={20}
+				className="mr-4 h-8 w-8"
+				alt="Company logo"
+			/>
 
 			<ul className="flex items-center gap-3">
 				<li>

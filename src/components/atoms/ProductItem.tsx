@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import Link from "next/link";
-import { Image } from "./Image";
+import NextImage from "next/image";
 
 interface IProductItem {
 	img: {
@@ -22,7 +22,7 @@ export const ProductItem: FC<IProductItem> = ({
 }) => (
 	<li className="h-auto w-min rounded-lg bg-neutral-100 p-5 drop-shadow transition hover:bg-neutral-200">
 		<Link key={id} href={`/product/${id}`}>
-			{src && <Image src={src} alt={alt} className="h-72 w-72" />}
+			{src && <NextImage src={src} alt={alt} width={288} height={288} />}
 
 			<div className="mt-3 flex justify-between align-middle">
 				<h3 className="text-lg">{title}</h3>
