@@ -69,7 +69,9 @@ const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
 				</section>
 			</article>
 
-			<ProductPresenter data={relatedProducts} />
+			<h2 className="mb-4 mt-16 text-2xl">Related products:</h2>
+
+			<ProductPresenter data={relatedProducts} data-testid="related-products" />
 		</Fragment>
 	);
 };

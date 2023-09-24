@@ -31,6 +31,7 @@ const ProductsPage = async ({ params }: { params: { page?: string } }) => {
 
 	return (
 		<ProductPresenter
+			data-testid="products-list"
 			data={data.products}
 			pagination={{
 				count,

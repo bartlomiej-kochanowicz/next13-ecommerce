@@ -9,9 +9,9 @@ interface IProductPresenter {
 	pagination?: ComponentProps<typeof Pagination>;
 }
 
-export const ProductPresenter: FC<IProductPresenter> = ({ data, pagination }) => (
+export const ProductPresenter: FC<IProductPresenter> = ({ data, pagination, ...rest }) => (
 	<Fragment>
-		<ProductList>
+		<ProductList {...rest}>
 			{data.map(({ id, name, images, description, price }) => (
 				<ProductItem
 					key={id}
