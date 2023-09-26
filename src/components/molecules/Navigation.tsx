@@ -41,8 +41,8 @@ export const Navigation = async () => {
 							href={generatePath(paths.categories, {
 								slug,
 							})}
-							className="pb-0.5 text-base font-semibold text-neutral-500 hover:text-neutral-700"
-							activeClassName="text-purple-500 hover:text-purple-500"
+							className={className}
+							activeClassName={activeClassName}
 						>
 							{name}
 						</ActiveLink>

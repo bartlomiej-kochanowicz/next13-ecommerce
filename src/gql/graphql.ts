@@ -10723,7 +10723,7 @@ export type CategoriesGetListQuery = { categories: Array<{ slug: string, name: s
 export type CollectionGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CollectionGetListQuery = { collections: Array<{ name: string, slug: string }> };
+export type CollectionGetListQuery = { collections: Array<{ name: string, slug: string, image: { url: string } }> };
 
 export type ProductGetSingleQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -10798,6 +10798,9 @@ export const CollectionGetListDocument = new TypedDocumentString(`
   collections {
     name
     slug
+    image {
+      url
+    }
   }
 }
     `) as unknown as TypedDocumentString<CollectionGetListQuery, CollectionGetListQueryVariables>;

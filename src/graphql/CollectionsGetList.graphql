@@ -2,5 +2,8 @@ query CollectionGetList {
 	collections {
 		name
 		slug
+		image {
+			url
+		}
 	}
 }
