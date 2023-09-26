@@ -69,7 +69,7 @@ const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
 				</section>
 			</article>
 
-			<h2 className="mb-4 mt-16 text-2xl">Related products:</h2>
+			<h2 className="mx-3 mb-4 mt-16 text-2xl">Related products:</h2>
 
 			<ProductPresenter data={relatedProducts} data-testid="related-products" />
 		</Fragment>
