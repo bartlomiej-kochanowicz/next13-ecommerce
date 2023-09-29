@@ -10758,6 +10758,15 @@ export type ProductsGetListInCollectionQueryVariables = Exact<{
 
 export type ProductsGetListInCollectionQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
 
+export type ProductsGetListSearchQueryVariables = Exact<{
+  query: Scalars['String']['input'];
+  first?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ProductsGetListSearchQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> };
+
 export type ProductInListFragment = { id: string, name: string, description: string, price: number, images: Array<{ url: string }> };
 
 export class TypedDocumentString<TResult, TVariables>
@@ -10892,3 +10901,18 @@ export const ProductsGetListInCollectionDocument = new TypedDocumentString(`
     url
   }
 }`) as unknown as TypedDocumentString<ProductsGetListInCollectionQuery, ProductsGetListInCollectionQueryVariables>;
+export const ProductsGetListSearchDocument = new TypedDocumentString(`
+    query ProductsGetListSearch($query: String!, $first: Int, $skip: Int) {
+  products(where: {name_contains: $query}, first: $first, skip: $skip) {
+    ...ProductInList
+  }
+}
+    fragment ProductInList on Product {
+  id
+  name
+  description
+  price
+  images {
+    url
+  }
+}`) as unknown as TypedDocumentString<ProductsGetListSearchQuery, ProductsGetListSearchQueryVariables>;

@@ -1,0 +1,5 @@
+query ProductsGetListSearch($query: String!, $first: Int, $skip: Int) {
+	products(where: { name_contains: $query }, first: $first, skip: $skip) {
+		...ProductInList
+	}
+}
