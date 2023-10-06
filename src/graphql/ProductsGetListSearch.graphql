@@ -1,5 +1,10 @@
-query ProductsGetListSearch($query: String!, $first: Int, $skip: Int) {
-	products(where: { name_contains: $query }, first: $first, skip: $skip) {
+query ProductsGetListSearch($query: String!) {
+	products(where: { name_contains: $query }) {
 		...ProductInList
+	}
+	productsConnection(where: { name_contains: $query }) {
+		aggregate {
+			count
+		}
 	}
 }

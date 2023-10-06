@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import Link from "next/link";
 import { ActiveLink } from "../atoms/ActiveLink";
-import { Input } from "@/components/atoms/Input";
+import { SearchProducts } from "../molecules/SearchProducts";
 import { getCategoriesList } from "@/api/getCategoriesList";
 import { generatePath } from "@/utils/generatePath";
 import { paths } from "@/paths";
@@ -56,7 +56,7 @@ export const Navigation = async () => {
 				</ul>
 			</div>
 
-			<Input />
+			<SearchProducts />
 		</nav>
 	);
 };

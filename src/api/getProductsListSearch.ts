@@ -10,6 +10,10 @@ export const getProductsListSearch = async ({
 	page?: number;
 	take?: number;
 }) => {
+	if (!query) {
+		return Promise.resolve(undefined);
+	}
+
 	try {
 		const skip = (page - 1) * take;
 

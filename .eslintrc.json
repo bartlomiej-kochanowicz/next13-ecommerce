@@ -76,7 +76,8 @@
 				"name": "next/router",
 				"message": "Please use next/navigation instead."
 			}
-		]
+		],
+		"@typescript-eslint/ban-ts-comment": "off"
 	},
 	"overrides": [
 		{

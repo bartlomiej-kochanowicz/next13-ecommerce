@@ -10760,12 +10760,10 @@ export type ProductsGetListInCollectionQuery = { products: Array<{ id: string, n
 
 export type ProductsGetListSearchQueryVariables = Exact<{
   query: Scalars['String']['input'];
-  first?: InputMaybe<Scalars['Int']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type ProductsGetListSearchQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> };
+export type ProductsGetListSearchQuery = { products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productsConnection: { aggregate: { count: number } } };
 
 export type ProductInListFragment = { id: string, name: string, description: string, price: number, images: Array<{ url: string }> };
 
@@ -10902,9 +10900,14 @@ export const ProductsGetListInCollectionDocument = new TypedDocumentString(`
   }
 }`) as unknown as TypedDocumentString<ProductsGetListInCollectionQuery, ProductsGetListInCollectionQueryVariables>;
 export const ProductsGetListSearchDocument = new TypedDocumentString(`
-    query ProductsGetListSearch($query: String!, $first: Int, $skip: Int) {
-  products(where: {name_contains: $query}, first: $first, skip: $skip) {
+    query ProductsGetListSearch($query: String!) {
+  products(where: {name_contains: $query}) {
     ...ProductInList
+  }
+  productsConnection(where: {name_contains: $query}) {
+    aggregate {
+      count
+    }
   }
 }
     fragment ProductInList on Product {
