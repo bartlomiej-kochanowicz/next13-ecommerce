@@ -15,4 +15,12 @@ query ProductGetSingle($id: ID!) {
 	products(first: 4) {
 		...ProductInList
 	}
+	productColorVariants(where: { product: { id: $id } }) {
+		id
+		name
+	}
+	productSizeVariants(where: { product: { id: $id } }) {
+		id
+		name
+	}
 }

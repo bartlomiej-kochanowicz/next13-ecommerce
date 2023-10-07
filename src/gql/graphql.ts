@@ -10730,7 +10730,7 @@ export type ProductGetSingleQueryVariables = Exact<{
 }>;
 
 
-export type ProductGetSingleQuery = { product?: { id: string, name: string, description: string, price: number, categories: Array<{ products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }>, collections: Array<{ products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }>, images: Array<{ url: string }> } | null, products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> };
+export type ProductGetSingleQuery = { product?: { id: string, name: string, description: string, price: number, categories: Array<{ products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }>, collections: Array<{ products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }>, images: Array<{ url: string }> } | null, products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }>, productColorVariants: Array<{ id: string, name: string }>, productSizeVariants: Array<{ id: string, name: string }> };
 
 export type ProductsGetListAllQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -10828,6 +10828,14 @@ export const ProductGetSingleDocument = new TypedDocumentString(`
   }
   products(first: 4) {
     ...ProductInList
+  }
+  productColorVariants(where: {product: {id: $id}}) {
+    id
+    name
+  }
+  productSizeVariants(where: {product: {id: $id}}) {
+    id
+    name
   }
 }
     fragment ProductInList on Product {

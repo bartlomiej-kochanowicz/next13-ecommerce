@@ -2,6 +2,8 @@ import { Fragment, type FC } from "react";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import NextImage from "next/image";
+import { Sizes } from "./components/Sizes";
+import { Colors } from "./components/Colors";
 import { getProductSingle } from "@/api/getProductSingle";
 import { shuffleArray } from "@/utils/shuffleArray";
 import { ProductPresenter } from "@/components/organisms/ProductsPresenter";
@@ -9,6 +11,10 @@ import { ProductPresenter } from "@/components/organisms/ProductsPresenter";
 interface IProductPage {
 	params: {
 		id: string;
+	};
+	searchParams: {
+		size: string;
+		color: string;
 	};
 }
 
@@ -32,7 +38,7 @@ export async function generateMetadata({ params }: IProductPage): Promise<Metada
 	};
 }
 
-const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
+const ProductPage: FC<IProductPage> = async ({ params: { id }, searchParams }) => {
 	const data = await getProductSingle({ id });
 
 	if (!data.product) {
@@ -40,6 +46,11 @@ const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
 	}
 
 	const { images, name, description, price, collections, categories } = data.product;
+	const { productColorVariants } = data;
+	const { productSizeVariants } = data;
+
+	const renderColors = productColorVariants.length > 0;
+	const renderSizes = productSizeVariants.length > 0;
 
 	const image = images[0].url;
 
@@ -66,6 +77,10 @@ const ProductPage: FC<IProductPage> = async ({ params: { id } }) => {
 					</div>
 
 					<p>{description}</p>
+
+					{renderColors && <Colors colors={productColorVariants} selected={searchParams.color} />}
+
+					{renderSizes && <Sizes sizes={productSizeVariants} selected={searchParams.size} />}
 				</section>
 			</article>
 
