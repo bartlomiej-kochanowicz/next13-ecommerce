@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
+import { formatMoney } from "@/utils/formatMoney";
 
 interface IProductItem {
 	img: {
@@ -28,9 +29,7 @@ export const ProductItem: FC<IProductItem> = ({
 				<h3 className="text-lg">{title}</h3>
 
 				<data value={price} className="h-fit font-medium">
-					{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-						price / 100,
-					)}
+					{formatMoney(price)}
 				</data>
 			</div>
 

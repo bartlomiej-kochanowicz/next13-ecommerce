@@ -4,9 +4,13 @@ import { notFound } from "next/navigation";
 import NextImage from "next/image";
 import { Sizes } from "./components/Sizes";
 import { Colors } from "./components/Colors";
+import AddToCartButton from "./components/AddToCartButton";
 import { getProductSingle } from "@/api/getProductSingle";
 import { shuffleArray } from "@/utils/shuffleArray";
 import { ProductPresenter } from "@/components/organisms/ProductsPresenter";
+import { getOrCreateCart } from "@/api/getOrCreateCart";
+import { addProductToCart } from "@/api/addProductToCart";
+import { formatMoney } from "@/utils/formatMoney";
 
 interface IProductPage {
 	params: {
@@ -60,6 +64,13 @@ const ProductPage: FC<IProductPage> = async ({ params: { id }, searchParams }) =
 		...data.products,
 	]).slice(0, 4);
 
+	const addToCartAction = async () => {
+		"use server";
+
+		const cart = await getOrCreateCart();
+		await addProductToCart(cart.id, id);
+	};
+
 	return (
 		<Fragment>
 			<article className="mx-3 justify-center align-middle md:flex">
@@ -70,9 +81,7 @@ const ProductPage: FC<IProductPage> = async ({ params: { id }, searchParams }) =
 						<h1 className="mr-16 text-2xl font-semibold">{name}</h1>
 
 						<data value={price} className="h-fit text-2xl font-medium">
-							{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-								price / 100,
-							)}
+							{formatMoney(price)}
 						</data>
 					</div>
 
@@ -81,6 +90,10 @@ const ProductPage: FC<IProductPage> = async ({ params: { id }, searchParams }) =
 					{renderColors && <Colors colors={productColorVariants} selected={searchParams.color} />}
 
 					{renderSizes && <Sizes sizes={productSizeVariants} selected={searchParams.size} />}
+
+					<form action={addToCartAction}>
+						<AddToCartButton />
+					</form>
 				</section>
 			</article>
 
