@@ -1,7 +1,5 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { CartGetByIdDocument } from "@/gql/graphql";
-import { executeGraphQl } from "@/lib/executeGraphQl";
 import { formatMoney } from "@/utils/formatMoney";
 import { ChangeQuantity } from "@/components/atoms/ChangeQuantity";
 import { getCardById } from "@/api/getCardById";
