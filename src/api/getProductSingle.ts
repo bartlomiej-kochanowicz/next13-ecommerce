@@ -1,10 +1,12 @@
 import { ProductGetSingleDocument } from "@/gql/graphql";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 
 export const getProductSingle = async ({ id }: { id: string }) => {
 	try {
-		const data = await executeGraphql(ProductGetSingleDocument, {
-			id,
+		const data = await executeGraphQl(ProductGetSingleDocument, {
+			variables: {
+				id,
+			},
 		});
 
 		return data;

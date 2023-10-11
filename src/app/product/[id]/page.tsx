@@ -2,6 +2,7 @@ import { Fragment, type FC } from "react";
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import NextImage from "next/image";
+import { revalidateTag } from "next/cache";
 import { Sizes } from "./components/Sizes";
 import { Colors } from "./components/Colors";
 import AddToCartButton from "./components/AddToCartButton";
@@ -69,6 +70,8 @@ const ProductPage: FC<IProductPage> = async ({ params: { id }, searchParams }) =
 
 		const cart = await getOrCreateCart();
 		await addProductToCart(cart.id, id);
+
+		revalidateTag("cart");
 	};
 
 	return (

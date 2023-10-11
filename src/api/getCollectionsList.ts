@@ -1,9 +1,9 @@
 import { CollectionGetListDocument } from "@/gql/graphql";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 
 export const getCollectionsList = async () => {
 	try {
-		const data = await executeGraphql(CollectionGetListDocument);
+		const data = await executeGraphQl(CollectionGetListDocument);
 
 		return data.collections;
 	} catch {

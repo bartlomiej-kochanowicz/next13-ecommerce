@@ -1,5 +1,5 @@
 import { ProductsGetListAllDocument } from "@/gql/graphql";
-import { executeGraphql } from "@/lib/executeGraphql";
+import { executeGraphQl } from "@/lib/executeGraphQl";
 
 export const getProductsListAll = async ({
 	page = 1,
@@ -11,9 +11,11 @@ export const getProductsListAll = async ({
 	try {
 		const skip = (page - 1) * take;
 
-		const data = await executeGraphql(ProductsGetListAllDocument, {
-			skip,
-			first: take,
+		const data = await executeGraphQl(ProductsGetListAllDocument, {
+			variables: {
+				skip,
+				first: take,
+			},
 		});
 
 		return data;

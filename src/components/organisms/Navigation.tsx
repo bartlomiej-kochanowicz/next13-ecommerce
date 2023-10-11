@@ -2,6 +2,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 import { ActiveLink } from "../atoms/ActiveLink";
 import { SearchProducts } from "../molecules/SearchProducts";
+import { CartButton } from "../atoms/CartButton";
 import { getCategoriesList } from "@/api/getCategoriesList";
 import { generatePath } from "@/utils/generatePath";
 import { paths } from "@/paths";
@@ -57,6 +58,8 @@ export const Navigation = async () => {
 			</div>
 
 			<SearchProducts />
+
+			<CartButton />
 		</nav>
 	);
 };
