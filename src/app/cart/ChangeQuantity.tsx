@@ -10,16 +10,18 @@ export const ChangeQuantity = ({ itemId, quantity }: { itemId: string; quantity:
 
 	return (
 		<form className="flex">
-			<button
-				className="h-6 w-6 border"
-				type="submit"
-				formAction={async () => {
-					setOptimisticQuantity(optimisticQuantity - 1);
-					await changeItemQuantity(itemId, optimisticQuantity - 1);
-				}}
-			>
-				-
-			</button>
+			{optimisticQuantity > 1 ? (
+				<button
+					className="h-6 w-6 border"
+					type="submit"
+					formAction={async () => {
+						setOptimisticQuantity(optimisticQuantity - 1);
+						await changeItemQuantity(itemId, optimisticQuantity - 1);
+					}}
+				>
+					-
+				</button>
+			) : null}
 			<span className="w-8 text-center">{optimisticQuantity}</span>
 			<button
 				className="h-6 w-6 border"

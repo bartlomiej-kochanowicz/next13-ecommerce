@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { RemoveButton } from "./RemoveButton";
 import { formatMoney } from "@/utils/formatMoney";
-import { ChangeQuantity } from "@/components/atoms/ChangeQuantity";
+import { ChangeQuantity } from "@/app/cart/ChangeQuantity";
 import { getCardById } from "@/api/getCardById";
 
 export default async function CartPage() {
@@ -53,6 +54,9 @@ export default async function CartPage() {
 										<ChangeQuantity itemId={item.product.id} quantity={item.quantity} />
 									</td>
 									<td className="px-6 py-4">{formatMoney(item.product.price)}</td>
+									<td className="px-6 py-4">
+										<RemoveButton productId={item.product.id} />
+									</td>
 								</tr>
 							);
 						})}
